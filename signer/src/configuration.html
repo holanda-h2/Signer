@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Signer - Configurtion of Signature</title>
+
+    <link rel="stylesheet" href="css/signature.css">
+    <link rel="stylesheet" href="lib/pdfjs/web/viewer.css">
+</head>
+
+<body tabindex="1" class="loadingInProgress">
+    <div id="outerContainer">
+        <div id="overlayContainer">
+            <div id="documentPropertiesOverlay" class="container" style="overflow-x: hidden;">
+                <div class="dialog" style="height: 100%; min-width: 390px; width: 100%;">
+
+                    <div id='titlebar'>Configuration of Signature</div>
+                    <div id='close'>&times;</div>
+
+                    <div class="row">
+                        <span></span>
+                        <p></p>
+                    </div>
+                    <div class="row">
+                        <span>Proxy</span>
+                        <p></p>
+                    </div>
+                    <div class="separator"></div>
+                    <div class="row">
+                        <span>IP:</span>
+                        <p><input type="text" id="id-proxy-ip" class="toolbarField"></p>
+                    </div>
+                    <div class="row">
+                        <span>Port:</span>
+                        <p><input type="text" id="id-proxy-port" class="toolbarField"></p>
+                    </div>
+                    <div class="row">
+                        <span>User:</span>
+                        <p><input type="text" id="id-proxy-user" class="toolbarField"></p>
+                    </div>
+                    <div class="row">
+                        <span>Password:</span>
+                        <p><input type="password" id="id-proxy-password" class="toolbarField"></p>
+                    </div>
+                    <div class="row">
+                        <span>Use Proxy:</span>
+                        <p><input type="checkbox" id="id-proxy-disable" class="toolbarField"></p>
+                    </div>
+                    <div class="separator"></div>
+                    <div class="row">
+                        <span>Driver: <button id="id-config-detect" class="overlayButton"><span>Detect</span></button>
+                        </span>
+                        <p>
+                            <label id="id-local-driver-label" for="id-local-driver" class="fileLabel toolbarField">Please select a
+                file</label>
+                            <input id="id-local-driver" type="file" class="fileInput" accept=".so,.dll" />
+                        </p>
+                    </div>
+                    <div class="buttonRow">
+                        <button id="sign-save" class="overlayButton"><span>Save</span></button>
+                        <button id="sign-close" class="overlayButton"><span>Close</span></button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const electron = require('electron');
+        const {
+            ipcRenderer,
+            remote
+        } = electron;
+
+        document.getElementById('id-config-detect').addEventListener('click', event => {
+            ipcRenderer.send('config-detect');
+        })
+
+        document.getElementById('sign-save').addEventListener('click', event => {
+            let obj = {};
+            obj.IP = document.getElementById("id-proxy-ip").value;
+            obj.port = document.getElementById("id-proxy-port").value;
+            obj.user = document.getElementById("id-proxy-user").value;
+            obj.password = document.getElementById("id-proxy-password").value;
+            obj.proxy = document.getElementById("id-proxy-disable").checked;
+
+            let path = document.getElementById("id-local-driver-label").innerHTML;
+            if (document.getElementById("id-local-driver").files[0]) {
+                path = document.getElementById("id-local-driver").files[0].path;
+            }
+            obj.driver = path;
+
+            ipcRenderer.send('config-save', obj);
+            let window = remote.getCurrentWindow();
+            window.close();
+
+        })
+
+        document.getElementById('close').addEventListener('click', event => {
+            let window = remote.getCurrentWindow();
+            window.close();
+        })
+
+        document.getElementById('sign-close').addEventListener('click', event => {
+            let window = remote.getCurrentWindow();
+            window.close();
+        })
+
+        let idFileLabel = document.getElementById("id-local-driver-label");
+        let idFile = document.getElementById("id-local-driver");
+        idFile.onchange = function() {
+            let input = this.files[0];
+            let text;
+            if (input) {
+                let fileName = input.path.split("\\").pop();
+                text = fileName;
+            } else {
+                text = 'Please select a file';
+            }
+            idFileLabel.innerHTML = text;
+        };
+
+        ipcRenderer.on('load-config', (event, obj) => {
+            document.getElementById("id-proxy-ip").value = obj.IP;
+            document.getElementById("id-proxy-port").value = obj.port;
+            document.getElementById("id-proxy-user").value = obj.user;
+            document.getElementById("id-proxy-password").value = obj.password;
+            document.getElementById("id-proxy-disable").checked = obj.proxy;
+            document.getElementById("id-local-driver-label").innerHTML = obj.driver
+        });
+
+        ipcRenderer.on('config-detect-driver', (event, driver) => {
+            document.getElementById("id-local-driver-label").innerHTML = driver;
+        });
+    </script>
+
+</body>
+
+</html>

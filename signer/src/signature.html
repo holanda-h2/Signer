@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lector - Signature</title>
+    <link rel="stylesheet" href="css/stylesheet-pure-css.css">
+    <link rel="stylesheet" href="css/signature.css">
+    <link rel="stylesheet" href="lib/pdfjs/web/viewer.css">
+    <script src="js/w3.js"></script>
+</head>
+
+<body tabindex="1" class="loadingInProgress">
+    <div id="outerContainer">
+        <div id="overlayContainer">
+            <div id="documentPropertiesOverlay" class="container" style="overflow-x: hidden;">
+                <div class="dialog" style="height: 100%; min-width: 200px; width: 100%;">
+
+                    <div id='titlebar'>Signature</div>
+                    <div id='close'>&times;</div>
+                    <img id='logo' src='assets/images/signer.png' />
+                    <div class="row">
+                        <span></span>
+                        <p></p>
+                    </div>
+                    <div class="row">
+                        <span></span>
+                        <p></p>
+                    </div>
+                    <div class="row">
+                        <span><label for="type-id">Type:</label></span>
+                        <p>
+                            <select id="type-id" class="toolbarField">
+                                <option value="PAdES" style="color:#000">PAdES</option>
+                                <option value="XAdES" style="color:#000">XAdES</option>
+                                <option value="XSig" style="color:#000" >XSig</option>
+                                <option value="CAdES" style="color:#000" >CAdES</option>
+                              </select>
+                        </p>
+                    </div>
+                    <div class="row">
+                        <span>Device:</span>
+                        <p>
+                            <input id="radio-device-token" name="radio" type="radio" value="1" checked="checked" onchange="onChangeRadio()"><label for="radio-device-1"><span><span></span></span>Token</label>
+
+                            <input id="radio-device-2" name="radio" type="radio" value="2" onchange="onChangeRadio()"><label for="radio-device-2"><span><span></span></span>File</label>
+                        </p>
+                    </div>
+                    <div id="id-file-name" class="row hidden">
+                        <span>File Name:</span>
+                        <p><label id="id-p12-label" for="id-p12-file" class="fileLabel toolbarField"><span>Please select a file</span></label>
+                            <input id="id-p12-file" type="file" class="fileInput" accept=".p12" /></p>
+                    </div>
+                    <div id="id-file-password" class="row hidden">
+                        <span>File Password:</span>
+                        <p><input type="password" id="file-password" class="toolbarField"></p>
+                    </div>
+                    <div class="row">
+                        <span></span>
+                        <p></p>
+                    </div>
+                    <div class="row">
+                        <span>PIN:</span>
+                        <p><input type="password" id="pin" class="toolbarField"></p>
+                    </div>
+                    <div class="row">
+                        <span>File(s) to Sign: <br /><br />
+                            <span id="idSpinner" class="spinner"></span> <span id="result"></span>
+                        </span>
+                        <p>
+                            <label id="id-file-label" for="id-file" class="fileLabel toolbarField"><span
+                                    class="file-li">Please select a file</span></label>
+                            <input id="id-file" type="file" class="fileInput" accept="application/pdf" multiple />
+                        </p>
+                    </div>
+
+                    <div class="buttonRow">
+                        <button id="idButtonSubmit" class="overlayButton">Sign</button>
+                        <button id="sign-close" class="overlayButton"><span>Close</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const remote = require('electron').remote;
+
+        document.getElementById('close').addEventListener('click', event => {
+            let window = remote.getCurrentWindow()
+            window.close()
+        })
+
+        document.getElementById('sign-close').addEventListener('click', event => {
+            let window = remote.getCurrentWindow()
+            window.close()
+        })
+
+        let idLabelP12 = document.getElementById("id-p12-label");
+        let idFileP12 = document.getElementById("id-p12-file");
+        idFileP12.onchange = function() {
+            //  let textA = '';
+            // for (var i = 0; i < idFileP12.files.length; i++) {
+            let input = idFileP12.files[0];
+            //  if (!input.exclui) {
+            let text;
+            if (input) {
+                let fileName = input.path.split("\\").pop();
+                text = fileName;
+            } else {
+                text = '<li class="file-container file-li">Please select a file<li/>';
+            }
+            //          textA += '<li class="file-container file-li">' + text +
+            //            '<span class="file-close" onclick="clickX(' + i + ')">&times;</span><li/>';
+            //    }
+            //   }
+            //  if (textA == '') {
+            //       textA = '<li class="file-container file-li">Please select a file<li/>';
+            //   }
+            //   textA = '<ul class="file-ul">' + textA + '</ul>';
+            idLabelP12.innerHTML = text;
+        };
+
+        onChangeRadio = function() {
+            let device = document.getElementById("radio-device-token");
+            // alert(device.checked);
+            if (device.checked) {
+                w3.addClass('#id-file-name', 'hidden');
+                w3.addClass('#id-file-password', 'hidden');
+            } else {
+                w3.removeClass('#id-file-name', 'hidden');
+                w3.removeClass('#id-file-password', 'hidden');
+            }
+        }
+
+        let idFileLabel = document.getElementById("id-file-label");
+        let idFile = document.getElementById("id-file");
+        let idType = document.getElementById("type-id");
+
+        idType.onchange = function() {
+            let accept = "";
+            if (idType.value == "PAdES") {
+                accept = "application/pdf";
+            } else if (idType.value == "XAdES") {
+                accept = "application/xml";
+            } else if (idType.value == "XSig") {
+                accept = "application/xml";
+            } else if (idType.value == "CAdES") {
+                accept = "image/*";
+            }
+            idFile.setAttribute("accept", accept);
+
+            // for (var i = 0; i < idFile.files.length; i++) {
+            //     idFile.files[i].exclui = true;
+            //  }
+            idFile.value = '';
+            montaLista();
+        }
+
+        idFile.onclick = function() {
+            for (var i = 0; i < idFile.files.length; i++) {
+                idFile.files[i].exclui = false;
+            }
+            montaLista();
+        }
+
+        idFile.onchange = function() {
+            montaLista();
+        };
+
+        montaLista = function() {
+            let textA = '';
+            for (var i = 0; i < idFile.files.length; i++) {
+                let input = idFile.files[i];
+                if (!input.exclui) {
+                    let text;
+                    if (input) {
+                        let fileName = input.path.split("\\").pop();
+                        text = fileName;
+                    } else {
+                        text = '<li class="file-container file-li">Please select a file<li/>';
+                    }
+                    textA += '<li class="file-container file-li">' + text +
+                        '<span class="file-close" onclick="clickX(' + i + ')">&times;</span><li/>';
+                }
+            }
+            if (textA == '') {
+                textA = '<li class="file-container file-li">Please select a file<li/>';
+            }
+            textA = '<ul class="file-ul">' + textA + '</ul>';
+            idFileLabel.innerHTML = textA;
+        }
+
+        clickX = function(i) {
+            event.preventDefault();
+            idFile.files[i].exclui = true;
+            montaLista();
+        }
+
+        if (remote.getGlobal('sharedObject').nome_do_arquivo) {
+            var text = remote.getGlobal('sharedObject').nome_do_arquivo;
+            idFileLabel.innerHTML = '<ul class="file-ul"><li class="file-container file-li">' + text + '<li/></ul>';
+            let extension = text.substring(text.length - 3, text.length).toLowerCase();
+            if (extension == "pdf") {
+                idType.value = "PAdES";
+            } else if (extension == "xml") {
+                idType.value = "XAdES";
+            } else {
+                idType.value = "CAdES";
+            }
+        } else {
+            idFileLabel.innerHTML = '<ul class="file-ul"><li class="file-container file-li">Please select a file<li/></ul>';
+        }
+        document.getElementById("pin").focus();
+
+        const electron = require('electron');
+        const {
+            ipcRenderer
+        } = electron;
+
+        document.getElementById('idButtonSubmit').addEventListener('click', event => {
+            event.preventDefault();
+            let idSpinner = document.getElementById("idSpinner");
+            let idButtonSubmit = document.getElementById("idButtonSubmit");
+            let vPIN = document.getElementById("pin").value;
+            let idresult = document.getElementById("result");
+
+            if (!vPIN || vPIN == "") {
+                idresult.innerHTML = "PIN is Undefined!"
+                vPIN.focus();
+                return;
+            }
+
+
+            let idFile = document.getElementById("id-file");
+            let path = "";
+            if (remote.getGlobal('sharedObject').nome_do_arquivo) {
+                path = remote.getGlobal('sharedObject').nome_do_arquivo;
+            }
+            if (idFile && idFile.files[0] && idFile.files[0].path) {
+                path = idFile.files[0].path;
+                for (var i = 1; i < idFile.files.length; i++) {
+                    path = path + ";" + idFile.files[i].path;;
+                }
+
+            }
+            let idType = document.getElementById("type-id");
+
+            let deviceID = document.getElementById("radio-device-token");
+            let device = "T";
+            let vPass = "";
+            let vfile = "";
+            if (!deviceID.checked) {
+                device = "F";
+                vPass = document.getElementById("file-password").value;
+                if (!vPass || vPass == "") {
+
+                    idresult.innerHTML = "File Password is Undefined!";
+                    //  idType.focus();
+                    return;
+                }
+                let idFileName = document.getElementById("id-p12-file");
+                if (idFileName && idFileName.files[0] && idFileName.files[0].path) {
+                    vfile = idFileName.files[0].path;
+                }
+                if (vfile == "") {
+                    idresult.innerHTML = "File Name is Undefined!";
+                    //    idType.focus();
+                    return;
+                }
+
+            }
+
+            idSpinner.style.display = "inline-block";
+            idButtonSubmit.disabled = true;
+
+            ipcRenderer.send('sign-file', {
+                type: idType.value,
+                device: device,
+                file_name: vfile,
+                file_password: vPass,
+                path: path,
+                pin: vPIN
+            });
+
+        })
+
+        ipcRenderer.on('sign-file-msg', (event, msg) => {
+            let idSpinner = document.getElementById("idSpinner");
+            let idButtonSubmit = document.getElementById("idButtonSubmit");
+            let idresult = document.getElementById("result");
+
+            idresult.innerHTML = msg;
+            if (msg == "Signed!") {
+                idSpinner.style.display = "none";
+                idButtonSubmit.disabled = false;
+            }
+        });
+
+        ipcRenderer.on('sign-file-xxx', (event, msg) => {
+            document.getElementById("xxx").innerHTML = msg;
+        });
+    </script>
+
+</body>
+
+</html>

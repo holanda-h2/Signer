@@ -1,0 +1,143 @@
+2021-01-04 14:15:16 INFO  SignerApp:120 - START: T
+2021-01-04 14:15:16 INFO  SignerApp:154 - END: T
+2021-01-04 14:15:23 INFO  SignerApp:120 - START: T
+2021-01-04 14:15:23 INFO  SignerApp:154 - END: T
+2021-01-04 14:16:57 ERROR MyConfiguration:63 - Nenhum, driver foi encontrado
+2021-01-04 14:16:58 INFO  SignerApp:120 - START: S
+2021-01-04 14:16:58 INFO  PDFSigner:62 - singFile: C:\Users\smhol\OneDrive\Área de Trabalho\Brazilian_Prayers.pdf
+2021-01-04 14:16:58 INFO  PDFSigner:68 - sign: START
+2021-01-04 14:17:00 INFO  PDVisibleSigBuilder:63 - PDF Structure has been created
+2021-01-04 14:17:00 INFO  PDFTemplateCreator:78 - pdf building has been started
+2021-01-04 14:17:00 INFO  PDVisibleSigBuilder:195 - ProcSet array has been created
+2021-01-04 14:17:00 INFO  PDVisibleSigBuilder:72 - PDF page has been created
+2021-01-04 14:17:00 INFO  PDVisibleSigBuilder:96 - AcroForm has been created
+2021-01-04 14:17:00 INFO  PDVisibleSigBuilder:110 - Signature field has been created
+2021-01-04 14:17:00 INFO  PDVisibleSigBuilder:127 - PDSignature has been created
+2021-01-04 14:17:00 INFO  PDVisibleSigBuilder:144 - AcroForm dictionary has been created
+2021-01-04 14:17:00 INFO  PDVisibleSigBuilder:182 - Matrix has been added
+2021-01-04 14:17:00 INFO  PDVisibleSigBuilder:160 - Signature rectangle has been created
+2021-01-04 14:17:00 INFO  PDVisibleSigBuilder:234 - Formatter rectangle has been created
+2021-01-04 14:17:00 INFO  PDVisibleSigBuilder:202 - Visible Signature Image has been created
+2021-01-04 14:17:00 INFO  PDVisibleSigBuilder:242 - Holder form stream has been created
+2021-01-04 14:17:00 INFO  PDVisibleSigBuilder:250 - Holder form resources have been created
+2021-01-04 14:17:00 INFO  PDVisibleSigBuilder:263 - Holder form has been created
+2021-01-04 14:17:00 INFO  PDVisibleSigBuilder:280 - PDF appearance dictionary has been created
+2021-01-04 14:17:00 INFO  PDVisibleSigBuilder:288 - Stream of another form (inner form - it will be inside holder form) has been created
+2021-01-04 14:17:00 INFO  PDVisibleSigBuilder:297 - Resources of another form (inner form - it will be inside holder form)have been created
+2021-01-04 14:17:00 INFO  PDVisibleSigBuilder:311 - Another form (inner form - it will be inside holder form) has been created
+2021-01-04 14:17:00 INFO  PDVisibleSigBuilder:320 - Now inserted inner form inside holder form
+2021-01-04 14:17:00 INFO  PDVisibleSigBuilder:328 - Created image form stream
+2021-01-04 14:17:00 INFO  PDVisibleSigBuilder:336 - Created image form resources
+2021-01-04 14:17:00 INFO  PDVisibleSigBuilder:358 - Created image form
+2021-01-04 14:17:00 INFO  PDVisibleSigBuilder:371 - Created background layer form
+2021-01-04 14:17:00 INFO  PDVisibleSigBuilder:384 - Inserted ProcSet to PDF
+2021-01-04 14:17:00 INFO  PDVisibleSigBuilder:404 - Injected appearance stream to pdf
+2021-01-04 14:17:00 INFO  PDVisibleSigBuilder:417 - Visible signature has been created
+2021-01-04 14:17:00 INFO  PDVisibleSigBuilder:429 - WidgetDictionary has been created
+2021-01-04 14:17:00 INFO  PDFTemplateCreator:165 - stream returning started, size= 10885
+2021-01-04 14:17:00 INFO  PDFSigner:73 - sign: PREPARE SIGNATURE
+2021-01-04 14:17:00 WARN  FileSystemFontProvider:572 - New fonts found, font cache will be re-built
+2021-01-04 14:17:00 WARN  FileSystemFontProvider:325 - Building on-disk font cache, this may take a while
+2021-01-04 14:17:02 WARN  FileSystemFontProvider:328 - Finished building on-disk font cache, found 568 fonts
+2021-01-04 14:17:02 INFO  PDFSigner:76 - sign: HASH
+2021-01-04 14:17:02 INFO  CAManager:236 - Procurando certificado no Provider: Provedor OFFLINE de cadeias ICP-Brasil  (icpbrasil.jks)
+2021-01-04 14:17:02 INFO  CAManager:288 - Foram encontrados 3 níveis na cadeia do provider Provedor OFFLINE de cadeias ICP-Brasil  (icpbrasil.jks) 
+2021-01-04 14:17:02 INFO  BasicCertificate:607 - Adicionando a url http://repositorio-acp.acdefesa.mil.br/lcr/acdefesa-v0.crl
+2021-01-04 14:17:02 INFO  BasicCertificate:607 - Adicionando a url http://repositorio-acr.acdefesa.mil.br/lcr/acdefesa-v0.crl
+2021-01-04 14:17:03 INFO  OnLineCRLRepository:86 - Foi encontrada uma LCR válida: http://repositorio-acp.acdefesa.mil.br/lcr/acdefesa-v0.crl
+2021-01-04 14:17:03 INFO  CAdESSigner:356 - OID do algoritmo que irá gerar assinatura: 1.2.840.113549.1.1.11
+2021-01-04 14:17:03 INFO  CAdESSigner:357 - Nome do  algoritmo que irá gerar a assinatura : SHA256withRSA
+2021-01-04 14:17:03 INFO  CAdESSigner:359 - Tamanho mínimo para chave:  2.048
+2021-01-04 14:17:03 INFO  CAdESSigner:361 - Validando o tamanho da chave.
+2021-01-04 14:17:03 INFO  CAdESSigner:373 - Efetuando a verificação dos atributos assinados
+2021-01-04 14:17:03 INFO  CAdESSigner:409 - Ponto de Confiança ... CN=Autoridade Certificadora Raiz Brasileira v5, OU=Instituto Nacional de Tecnologia da Informacao - ITI, O=ICP-Brasil, C=BR
+2021-01-04 14:17:03 INFO  CAdESSigner:409 - Ponto de Confiança ... CN=Autoridade Certificadora Raiz Brasileira v2, OU=Instituto Nacional de Tecnologia da Informacao - ITI, O=ICP-Brasil, C=BR
+2021-01-04 14:17:03 INFO  CAdESSigner:421 - CN=Autoridade Certificadora Raiz Brasileira v5, OU=Instituto Nacional de Tecnologia da Informacao - ITI, O=ICP-Brasil, C=BR
+2021-01-04 14:17:03 INFO  CAdESSigner:421 - CN=Autoridade Certificadora de Defesa, OU=Autoridade Certificadora Raiz Brasileira v5, O=ICP-Brasil, C=BR
+2021-01-04 14:17:03 INFO  CAdESSigner:421 - CN=Autoridade Certificadora Raiz Brasileira v5, OU=Instituto Nacional de Tecnologia da Informacao - ITI, O=ICP-Brasil, C=BR
+2021-01-04 14:17:03 INFO  CAdESSigner:427 - O certificado pertence a cadeia CN=Autoridade Certificadora Raiz Brasileira v5, OU=Instituto Nacional de Tecnologia da Informacao - ITI, O=ICP-Brasil, C=BR que é permitida pela política  para gerar a assinatura.
+2021-01-04 14:17:03 INFO  CAdESSigner:437 - Verificando o período de validade da politica
+2021-01-04 14:17:03 WARN  PolicyValidator:140 - A Lista de politicas de assinatura do componente para o padrão usado está desatualizada, a data de atualização é: 10/05/2020 - 09:00:00
+2021-01-04 14:17:03 INFO  PolicyValidator:141 - Buscando a LPA no arquivo local {0}.
+2021-01-04 14:17:03 WARN  PolicyFactory:194 - Arquivo LPA_PAdES.der não encontrado, executará download do arquivo.
+2021-01-04 14:17:03 INFO  LPARepository:77 - Executando download de http://politicas.icpbrasil.gov.br/LPA_PAdES.der 
+2021-01-04 14:17:03 INFO  LPARepository:80 - O diretório C:\Users\smhol\AppData\Local\Temp\lpas para armazenamento local de LPA não existe e será criado.
+2021-01-04 14:17:03 INFO  LPARepository:83 - Executando download de http://politicas.icpbrasil.gov.br/LPA_PAdES.der 
+2021-01-04 14:17:03 INFO  CAdESSigner:164 - Adicionando Certificado no CertStore
+2021-01-04 14:17:03 INFO  CAdESSigner:445 - OID do algoritmo que irá gerar assinatura: 1.2.840.113549.1.1.11
+2021-01-04 14:17:04 INFO  CAdESSigner:471 - Efetuando a verificação dos atributos NÃO assinados
+2021-01-04 14:17:04 INFO  CAdESSigner:533 - Assinatura gerada com sucesso!
+2021-01-04 14:17:04 INFO  PDFSigner:81 - sign: SIGN
+2021-01-04 14:17:04 INFO  PDFSigner:83 - sign: OK
+2021-01-04 14:17:04 INFO  SignerApp:154 - END: S
+2021-01-04 14:19:15 ERROR MyConfiguration:63 - Nenhum, driver foi encontrado
+2021-01-04 14:19:17 INFO  SignerApp:120 - START: S
+2021-01-04 14:19:17 INFO  PDFSigner:62 - singFile: C:\Users\smhol\OneDrive\Área de Trabalho\Doc1.pdf
+2021-01-04 14:19:17 INFO  PDFSigner:68 - sign: START
+2021-01-04 14:19:17 INFO  PDVisibleSigBuilder:63 - PDF Structure has been created
+2021-01-04 14:19:17 INFO  PDFTemplateCreator:78 - pdf building has been started
+2021-01-04 14:19:17 INFO  PDVisibleSigBuilder:195 - ProcSet array has been created
+2021-01-04 14:19:17 INFO  PDVisibleSigBuilder:72 - PDF page has been created
+2021-01-04 14:19:17 INFO  PDVisibleSigBuilder:96 - AcroForm has been created
+2021-01-04 14:19:17 INFO  PDVisibleSigBuilder:110 - Signature field has been created
+2021-01-04 14:19:17 INFO  PDVisibleSigBuilder:127 - PDSignature has been created
+2021-01-04 14:19:17 INFO  PDVisibleSigBuilder:144 - AcroForm dictionary has been created
+2021-01-04 14:19:17 INFO  PDVisibleSigBuilder:182 - Matrix has been added
+2021-01-04 14:19:17 INFO  PDVisibleSigBuilder:160 - Signature rectangle has been created
+2021-01-04 14:19:17 INFO  PDVisibleSigBuilder:234 - Formatter rectangle has been created
+2021-01-04 14:19:17 INFO  PDVisibleSigBuilder:202 - Visible Signature Image has been created
+2021-01-04 14:19:17 INFO  PDVisibleSigBuilder:242 - Holder form stream has been created
+2021-01-04 14:19:17 INFO  PDVisibleSigBuilder:250 - Holder form resources have been created
+2021-01-04 14:19:17 INFO  PDVisibleSigBuilder:263 - Holder form has been created
+2021-01-04 14:19:17 INFO  PDVisibleSigBuilder:280 - PDF appearance dictionary has been created
+2021-01-04 14:19:17 INFO  PDVisibleSigBuilder:288 - Stream of another form (inner form - it will be inside holder form) has been created
+2021-01-04 14:19:17 INFO  PDVisibleSigBuilder:297 - Resources of another form (inner form - it will be inside holder form)have been created
+2021-01-04 14:19:17 INFO  PDVisibleSigBuilder:311 - Another form (inner form - it will be inside holder form) has been created
+2021-01-04 14:19:17 INFO  PDVisibleSigBuilder:320 - Now inserted inner form inside holder form
+2021-01-04 14:19:17 INFO  PDVisibleSigBuilder:328 - Created image form stream
+2021-01-04 14:19:17 INFO  PDVisibleSigBuilder:336 - Created image form resources
+2021-01-04 14:19:17 INFO  PDVisibleSigBuilder:358 - Created image form
+2021-01-04 14:19:17 INFO  PDVisibleSigBuilder:371 - Created background layer form
+2021-01-04 14:19:17 INFO  PDVisibleSigBuilder:384 - Inserted ProcSet to PDF
+2021-01-04 14:19:17 INFO  PDVisibleSigBuilder:404 - Injected appearance stream to pdf
+2021-01-04 14:19:17 INFO  PDVisibleSigBuilder:417 - Visible signature has been created
+2021-01-04 14:19:17 INFO  PDVisibleSigBuilder:429 - WidgetDictionary has been created
+2021-01-04 14:19:18 INFO  PDFTemplateCreator:165 - stream returning started, size= 10758
+2021-01-04 14:19:18 INFO  PDFSigner:73 - sign: PREPARE SIGNATURE
+2021-01-04 14:19:18 INFO  PDFSigner:76 - sign: HASH
+2021-01-04 14:19:18 INFO  CAManager:236 - Procurando certificado no Provider: Provedor OFFLINE de cadeias ICP-Brasil  (icpbrasil.jks)
+2021-01-04 14:19:18 INFO  CAManager:288 - Foram encontrados 3 níveis na cadeia do provider Provedor OFFLINE de cadeias ICP-Brasil  (icpbrasil.jks) 
+2021-01-04 14:19:18 INFO  BasicCertificate:607 - Adicionando a url http://repositorio-acp.acdefesa.mil.br/lcr/acdefesa-v0.crl
+2021-01-04 14:19:18 INFO  BasicCertificate:607 - Adicionando a url http://repositorio-acr.acdefesa.mil.br/lcr/acdefesa-v0.crl
+2021-01-04 14:19:19 INFO  OnLineCRLRepository:86 - Foi encontrada uma LCR válida: http://repositorio-acp.acdefesa.mil.br/lcr/acdefesa-v0.crl
+2021-01-04 14:19:19 INFO  CAdESSigner:356 - OID do algoritmo que irá gerar assinatura: 1.2.840.113549.1.1.11
+2021-01-04 14:19:19 INFO  CAdESSigner:357 - Nome do  algoritmo que irá gerar a assinatura : SHA256withRSA
+2021-01-04 14:19:19 INFO  CAdESSigner:359 - Tamanho mínimo para chave:  2.048
+2021-01-04 14:19:19 INFO  CAdESSigner:361 - Validando o tamanho da chave.
+2021-01-04 14:19:19 INFO  CAdESSigner:373 - Efetuando a verificação dos atributos assinados
+2021-01-04 14:19:19 INFO  CAdESSigner:409 - Ponto de Confiança ... CN=Autoridade Certificadora Raiz Brasileira v5, OU=Instituto Nacional de Tecnologia da Informacao - ITI, O=ICP-Brasil, C=BR
+2021-01-04 14:19:19 INFO  CAdESSigner:409 - Ponto de Confiança ... CN=Autoridade Certificadora Raiz Brasileira v2, OU=Instituto Nacional de Tecnologia da Informacao - ITI, O=ICP-Brasil, C=BR
+2021-01-04 14:19:19 INFO  CAdESSigner:421 - CN=Autoridade Certificadora Raiz Brasileira v5, OU=Instituto Nacional de Tecnologia da Informacao - ITI, O=ICP-Brasil, C=BR
+2021-01-04 14:19:19 INFO  CAdESSigner:421 - CN=Autoridade Certificadora de Defesa, OU=Autoridade Certificadora Raiz Brasileira v5, O=ICP-Brasil, C=BR
+2021-01-04 14:19:19 INFO  CAdESSigner:421 - CN=Autoridade Certificadora Raiz Brasileira v5, OU=Instituto Nacional de Tecnologia da Informacao - ITI, O=ICP-Brasil, C=BR
+2021-01-04 14:19:19 INFO  CAdESSigner:427 - O certificado pertence a cadeia CN=Autoridade Certificadora Raiz Brasileira v5, OU=Instituto Nacional de Tecnologia da Informacao - ITI, O=ICP-Brasil, C=BR que é permitida pela política  para gerar a assinatura.
+2021-01-04 14:19:19 INFO  CAdESSigner:437 - Verificando o período de validade da politica
+2021-01-04 14:19:19 WARN  PolicyValidator:140 - A Lista de politicas de assinatura do componente para o padrão usado está desatualizada, a data de atualização é: 10/05/2020 - 09:00:00
+2021-01-04 14:19:19 INFO  PolicyValidator:141 - Buscando a LPA no arquivo local {0}.
+2021-01-04 14:19:19 INFO  CAdESSigner:164 - Adicionando Certificado no CertStore
+2021-01-04 14:19:19 INFO  CAdESSigner:445 - OID do algoritmo que irá gerar assinatura: 1.2.840.113549.1.1.11
+2021-01-04 14:19:20 INFO  CAdESSigner:471 - Efetuando a verificação dos atributos NÃO assinados
+2021-01-04 14:19:20 INFO  CAdESSigner:533 - Assinatura gerada com sucesso!
+2021-01-04 14:19:20 INFO  PDFSigner:81 - sign: SIGN
+2021-01-04 14:19:20 INFO  PDFSigner:83 - sign: OK
+2021-01-04 14:19:20 INFO  SignerApp:154 - END: S
+2021-01-04 14:20:06 INFO  SignerApp:120 - START: C
+2021-01-04 14:20:06 ERROR PDFChecker:250 - isSelfSigned: return false
+2021-01-04 14:20:06 INFO  PDFChecker:230 - verifyPKCS7: Certificate is not self-signed
+2021-01-04 14:20:06 INFO  PDFChecker:235 - verifyPKCS7: signature verified
+2021-01-04 14:20:06 INFO  SignerApp:154 - END: C
+2021-01-04 21:19:39 INFO  SignerApp:120 - START: C
+2021-01-04 21:19:40 ERROR PDFChecker:250 - isSelfSigned: return false
+2021-01-04 21:19:40 INFO  PDFChecker:230 - verifyPKCS7: Certificate is not self-signed
+2021-01-04 21:19:41 INFO  PDFChecker:235 - verifyPKCS7: signature verified
+2021-01-04 21:19:41 INFO  SignerApp:154 - END: C

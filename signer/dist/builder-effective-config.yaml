@@ -1,0 +1,22 @@
+directories:
+  output: dist
+  buildResources: build
+appId: signer
+productName: Signer
+copyright: Copyright (c) 2020 Sérgio Martini de Holanda
+buildVersion: 1.0.0
+win:
+  target: NSIS
+  icon: ./src/assets/icons/win/icon.ico
+extraFiles:
+  - filter:
+      - signer-0.0.1.jar
+      - signer.png
+      - signer.log
+      - stamp.html
+      - log4j.properties
+      - configuration.json
+nsis:
+  artifactName: '${productName}setup.${ext}'
+  uninstallDisplayName: '${productName}'
+electronVersion: 5.0.4

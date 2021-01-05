@@ -1,0 +1,54 @@
+{
+    "name": "signer",
+    "version": "1.0.0",
+    "productName": "Signer",
+    "description": "A simple PDF ICP-Brasil digital signature",
+    "main": "src/js/main.js",
+    "scripts": {
+        "start": "electron .",
+        "pack": "electron-builder --dir",
+        "dist": "electron-builder",
+        "postinstall": "electron-builder install-app-deps"
+    },
+    "author": "Sérgio Martini de Holanda",
+    "license": "MIT",
+    "dependencies": {
+        "crypto": "^1.0.1",
+        "custom-electron-titlebar": "^3.0.9"
+    },
+    "devDependencies": {
+        "custom-electron-titlebar": "^3.0.9",
+        "electron": "^5.0.4",
+        "electron-builder": "^21.1.1"
+    },
+    "build": {
+        "appId": "signer",
+        "productName": "Signer",
+        "copyright": "Copyright (c) 2020 Sérgio Martini de Holanda",
+        "buildVersion": "1.0.0",
+        "win": {
+            "target": "NSIS",
+            "icon": "./src/assets/icons/win/icon.ico"
+        },
+        "extraFiles": [
+            "signer-0.0.1.jar",
+            "signer.png",
+            "signer.log",
+            "stamp.html",
+            "log4j.properties",
+            "configuration.json"
+        ],
+        "nsis": {
+            "artifactName": "${productName}setup.${ext}",
+            "uninstallDisplayName": "${productName}"
+        }
+    },
+    "keywords": [
+        "electron",
+        "pdf",
+        "reader",
+        "signature",
+        "signer",
+        "password"
+    ]
+}

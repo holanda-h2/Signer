@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Signer - About</title>
+    <link rel="stylesheet" href="css/about.css">
+</head>
+
+<body>
+    <div id='titlebar'></div>
+    <img id='logo' src='assets/images/signer.png' />
+    <div id='info'>
+        <div id='label'>Signer</div>
+        <div id='description'>ICP-Brasil Digital Signature</div>
+        <div id='stats'>
+            <div>Version: 1.0.0</div>
+            <div>Author: Sérgio Martini de Holanda</div>
+        </div>
+    </div>
+    <div id='close'>&times;</div>
+    <script>
+        const remote = require('electron').remote
+        document.getElementById('close').addEventListener('click', event => {
+            let window = remote.getCurrentWindow()
+            window.close()
+        })
+    </script>
+</body>
+
+</html>

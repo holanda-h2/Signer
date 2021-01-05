@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Signer - File Log</title>
+    <link rel="stylesheet" href="css/signature.css">
+    <link rel="stylesheet" href="lib/pdfjs/web/viewer.css">
+</head>
+
+<body tabindex="1" class="loadingInProgress">
+    <div id="outerContainer">
+        <div id="overlayContainer">
+            <div id="documentPropertiesOverlay" class="container" style="overflow-x: hidden;">
+                <div class="dialog" style="height: 100%; min-width: 650px; width: 100%;">
+
+                    <div id='titlebar'>File Log</div>
+                    <div id='close'>&times;</div>
+                    <div class="row">
+                        <span></span>
+                        <p></p>
+                    </div>
+                    <div class="row">
+                        <span></span>
+                        <p></p>
+                    </div>
+                    <div class="row">
+                        <span></span>
+                        <p></p>
+                    </div>
+                    <div class="row">
+                        <p><textarea id="id-log-text" rows="19" cols="85" class="toolbarField"></textarea></p>
+                    </div>
+
+                    <div class="buttonRow">
+                        <button id="log-close" class="overlayButton"><span>Close</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const electron = require('electron');
+        const {
+            remote,
+            ipcRenderer
+        } = electron;
+
+        document.getElementById('close').addEventListener('click', event => {
+            let window = remote.getCurrentWindow()
+            window.close()
+        })
+
+        document.getElementById('log-close').addEventListener('click', event => {
+            let window = remote.getCurrentWindow()
+            window.close()
+        })
+
+        ipcRenderer.on('load-log', (event, obj) => {
+            let textarea = document.getElementById("id-log-text");
+            textarea.value = obj;
+            textarea.scrollTop = textarea.scrollHeight;
+        });
+    </script>
+
+</body>
+
+</html>

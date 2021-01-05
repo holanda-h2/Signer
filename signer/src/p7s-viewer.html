@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>p7s file</title>
+    <link rel="stylesheet" href="./css/w3.css">
+
+    <script>
+        function convertToHex(str) {
+            var hex = '';
+            for (var i = 0; i < str.length; i++) {
+                hex += '' + str.charCodeAt(i).toString(16);
+            }
+            return hex;
+        }
+
+        window.onload = function() {
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const fileName = urlParams.get('file');
+            // const extension = urlParams.get('extension');
+            let p7sName = fileName.substring(0, fileName.lastIndexOf('.')) + ".p7s";
+
+            var content = '';
+            var rawFile = new XMLHttpRequest();
+            rawFile.open("GET", p7sName, false);
+            rawFile.onreadystatechange = function() {
+                if (rawFile.readyState === 4) {
+                    if (rawFile.status === 200 || rawFile.status == 0) {
+                        var allText = rawFile.responseText;
+                        // content = allText.toString('hex');
+                        content = convertToHex(allText);
+                    }
+                }
+            }
+            rawFile.send(null);
+
+            // JPG PNG GIF SVG
+            //  var xmlNode = xmlTreeViewer.parseXML(xml);
+            // var retNode = xmlTreeViewer.getXMLViewerNode(xmlNode.xml);
+            document.getElementById("p7s-div").innerText = content;
+            document.getElementById("p7s-name").innerText = p7sName;
+
+            // let imgName = fileName.substring(0, fileName.lastIndexOf('.')) + "." + extension;
+            document.getElementById("img-div").src = fileName;
+            document.getElementById("img-name").innerText = fileName;
+
+        };
+    </script>
+
+</head>
+
+<body class="w3-white">
+
+    <div class="w3-container">
+
+        <div class="w3-row-padding w3-margin-top w3-margin-bottom">
+            <div class="w3-half">
+                <div class="w3-card">
+                    <div class="w3-container">
+                        <p id="img-name">img</p>
+                    </div>
+                    <img id="img-div" src="" style="width:100%">
+                </div>
+            </div>
+
+            <div class="w3-half">
+                <div class="w3-card">
+                    <div class="w3-container">
+                        <p id="p7s-name">p7s</p>
+                    </div>
+                    <div id="p7s-div" style="word-wrap: break-word;"></div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+
+</html>

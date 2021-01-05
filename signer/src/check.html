@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Signer - Check</title>
+  <link rel="stylesheet" href="css/signature.css">
+  <link rel="stylesheet" href="lib/pdfjs/web/viewer.css">
+</head>
+
+<body tabindex="1" class="loadingInProgress">
+  <div id="outerContainer">
+    <div id="overlayContainer">
+      <div id="documentPropertiesOverlay" class="container" style="overflow-x: hidden;">
+        <div class="dialog" style="height: 100%; width: 100%;">
+
+          <div id='titlebar'>Check Signature </div>
+          <div id='close'>&times;</div>
+          <img id='certificate' src='assets/images/certificate.png' />
+
+          <div class="row">
+            <span></span>
+            <p></p>
+          </div>
+          <div class="separator"></div>
+          <div class="row">
+            <span id='link-check'></span>
+            <p id="check-is-valid">-</p>
+          </div>
+          <div class="separator"></div>
+          <div class="row">
+            <span>Signed By:</span>
+            <p id="check-signed-by">-</p>
+          </div>
+          <div class="row">
+            <span>CPF:</span>
+            <p id="check-signed-by-cpf">-</p>
+          </div>
+          <div class="row">
+            <span>Sign Date:</span>
+            <p id="check-sign-date">-</p>
+          </div>
+          <div class="separator"></div>
+          <div class="row">
+            <span>Certificate Issuer </span>
+          </div>
+          <div class="row">
+            <span>C:</span>
+            <p id="check-issuer-c">-</p>
+          </div>
+          <div class="row">
+            <span>OU:</span>
+            <p id="check-issuer-ou">-</p>
+          </div>
+          <div class="row">
+            <span>CN:</span>
+            <p id="check-issuer-cn">-</p>
+          </div>
+          <div class="row">
+            <span>O:</span>
+            <p id="check-issuer-o">-</p>
+          </div>
+          <div class="separator"></div>
+          <div class="row">
+            <span>Sign Algorithm:</span>
+            <p id="check-sign-algorithm">-</p>
+          </div>
+          <div class="buttonRow">
+            <button id="sign-close" class="overlayButton"><span>Close</span></button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const electron = require('electron');
+    const { ipcRenderer, remote } = electron;
+
+    document.getElementById('close').addEventListener('click', event => {
+      let window = remote.getCurrentWindow()
+      window.close()
+    })
+
+    document.getElementById('sign-close').addEventListener('click', event => {
+      let window = remote.getCurrentWindow()
+      window.close()
+    })
+
+    var obj = null;
+
+    function showSignature(i) {
+      var ass = obj[i];
+      if (ass.signatureVerified == "NUL") {
+        document.getElementById("check-is-valid").innerHTML = 'PDF is NOT SIGNED';
+      } else if (ass.signatureVerified == "YES") {
+        document.getElementById("check-is-valid").innerHTML = 'Signature is VALID';
+        var signedBy = ass.certificateInfo.subjectOIDs.CN.split(":");
+        document.getElementById("check-signed-by").innerHTML = signedBy[0];
+        document.getElementById("check-signed-by-cpf").innerHTML = signedBy[1];
+        document.getElementById("check-sign-date").innerHTML = ass.signDate;
+        document.getElementById("check-issuer-c").innerHTML = ass.certificateInfo.issuerOIDs.C;
+        document.getElementById("check-issuer-ou").innerHTML = ass.certificateInfo.issuerOIDs.OU;
+        document.getElementById("check-issuer-cn").innerHTML = ass.certificateInfo.issuerOIDs.CN;
+        document.getElementById("check-issuer-o").innerHTML = ass.certificateInfo.issuerOIDs.O;
+        document.getElementById("check-sign-algorithm").innerHTML = ass.certificateInfo.signAlgorithm;
+      } else {
+        document.getElementById("check-is-valid").innerHTML = 'Signature is NOT VALID';
+      }
+    }
+
+    ipcRenderer.on('sign-check', (event, objP) => {
+      obj = objP;
+      if (obj && obj.length >= 1) {
+        var text = '';
+        for (var i = 0; i < obj.length; i++) {
+          text += '<button class="overlayButton"onclick ="showSignature(' + i + ')" ><span>' + (i + 1) + '</span></button>';
+        }
+        document.getElementById("link-check").innerHTML = text;
+      }
+      showSignature(0);
+    });
+  </script>
+
+</body>
+
+</html>

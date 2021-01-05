@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>xml process</title>
+    <link rel="stylesheet" href="./css/w3.css">
+    <link rel="stylesheet" href="./css/xmlTreeViewer.css">
+
+    <script src="./js/xmlTreeViewer.js"></script>
+
+    <script>
+        window.onload = function() {
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const fileName = urlParams.get('file');
+
+            var xml = '';
+            var rawFile = new XMLHttpRequest();
+            rawFile.open("GET", fileName, false);
+            rawFile.onreadystatechange = function() {
+                if (rawFile.readyState === 4) {
+                    if (rawFile.status === 200 || rawFile.status == 0) {
+                        var allText = rawFile.responseText;
+                        xml = allText;
+                    }
+                }
+            }
+            rawFile.send(null);
+
+            var xmlNode = xmlTreeViewer.parseXML(xml);
+            var retNode = xmlTreeViewer.getXMLViewerNode(xmlNode.xml);
+            document.getElementById("xml-div").appendChild(retNode);
+        };
+    </script>
+
+</head>
+
+<body class="w3-white">
+    <div class="w3-container">
+        <div id="xml-div" class="w3-panel w3-card"></div>
+    </div>
+</body>
+
+</html>
